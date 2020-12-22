@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person'
+import Person from './Person/Person';
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  background-color: ${props=>props.alt ? 'red' : 'green'};
+  color:white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  &:hover{
+    background-color: ${props=>props.alt ? 'salmon' : 'lightgreen'};
+    color:black;
+  }
+
+`;
 
 class App extends Component {
   state = {
@@ -44,13 +59,6 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
     let persons = null;
     if(this.state.showPersons){
       persons = (<div>
@@ -64,12 +72,23 @@ class App extends Component {
           })}
         </div>)
     }
+    const classes = [];
+    if(this.state.persons.length <3){
+      classes.push('red');
+    }
+    if(this.state.persons.length <2){
+      classes.push('bold');
+    }
+    
+    console.log(this.state.persons.length);
     return (
       <div className="App">
         <h1>Hi, I'm a React app</h1>
-        <button 
-        style={style} 
-        onClick={this.displayPersons}>Switch Name</button>
+        <p className={classes.join(' ')}>Good Morning</p>
+        <StyledButton
+        alt = {this.state.showPersons}
+        onClick={this.displayPersons}>Switch name
+        </StyledButton>
         {persons}
       </div>
       
