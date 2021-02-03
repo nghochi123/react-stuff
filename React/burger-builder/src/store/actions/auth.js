@@ -24,11 +24,11 @@ export const authFail = (error) => {
 }
 
 const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expirationDate');
-    localStorage.removeItem('userId');
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('expirationDate');
+    // localStorage.removeItem('userId');
     return {
-        type: actionTypes.AUTH_LOGOUT
+        type: actionTypes.AUTH_INITIATE_LOGOUT
     };
 };
 
@@ -37,7 +37,7 @@ export const checkAuthTimeout = (expirationTime) => {
     return dispatch => {
         setTimeout(()=>{
             dispatch(logout());
-        }, expirationTime*1000);
+        }, expirationTime*10);
     };
 };
 
