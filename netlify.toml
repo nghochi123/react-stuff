@@ -1,2 +1,2 @@
 [build]
-  base = "react-stuff/burger-builder"
+  base = "burger-builder"
